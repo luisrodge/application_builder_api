@@ -4,3 +4,5 @@ AllCops:
   EnabledByDefault: true
 Style/Copyright:
   Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
