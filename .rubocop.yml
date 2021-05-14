@@ -1,0 +1,6 @@
+require:
+  - rubocop-rails
+AllCops:
+  EnabledByDefault: true
+Style/Copyright:
+  Enabled: false
