@@ -1,7 +1,7 @@
 class ApplicationsController < ApplicationController
   def index
     @applications = Application.order(created_at: :desc)
-    render(json: @applications)
+    render(json: @applications, include: [])
   end
 
   def show
