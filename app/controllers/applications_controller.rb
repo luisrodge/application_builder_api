@@ -1,5 +1,5 @@
 class ApplicationsController < ApplicationController
-  before_action :set_application, only: %i[show]
+  before_action :set_application, only: %i[show destroy]
 
   def index
     @applications = Application.order(created_at: :desc)
@@ -17,6 +17,11 @@ class ApplicationsController < ApplicationController
     else
       render_422(@application.errors)
     end
+  end
+
+  def destroy
+    @application.destroy
+    head(:ok)
   end
 
   private
