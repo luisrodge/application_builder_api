@@ -1,11 +1,12 @@
 class ApplicationsController < ApplicationController
+  before_action :set_application, only: %i[show destroy]
+
   def index
     @applications = Application.order(created_at: :desc)
-    render(json: @applications)
+    render(json: @applications, include: [])
   end
 
   def show
-    @application = Application.find(params[:id])
     render(json: @application, include: ['sections', 'sections.rows', 'sections.rows.columns'])
   end
 
@@ -18,9 +19,18 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def destroy
+    @application.destroy
+    head(:ok)
+  end
+
   private
 
   def application_params
     params.require(:application).permit(:title, :details)
+  end
+
+  def set_application
+    @application = Application.find(params[:id])
   end
 end
