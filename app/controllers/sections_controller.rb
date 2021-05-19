@@ -2,7 +2,7 @@ class SectionsController < ApplicationController
   before_action :set_section, only: %i[show destroy]
 
   def show
-    render(json: @section, include: ['rows', 'rows.columns'])
+    render(json: @section, include: ['application', 'rows', 'rows.columns'])
   end
 
   def create
@@ -12,6 +12,11 @@ class SectionsController < ApplicationController
     else
       render_422(@section.errors)
     end
+  end
+
+  def destroy
+    @section.destroy
+    head(:ok)
   end
 
   private
