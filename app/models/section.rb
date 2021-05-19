@@ -13,9 +13,9 @@ class Section < ApplicationRecord
   private
 
   def create_row_columns
-    row = Row.create(section_id: id)
+    row = Row.create!(section_id: id)
     num_of_cols.times do
-      Column.create(row_id: row.id, section_id: id)
+      Column.create!(row_id: row.id, section_id: id)
     end
   end
 end

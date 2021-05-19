@@ -5,7 +5,7 @@ class Row < ApplicationRecord
 
   attribute :num_of_cols, :integer
 
-  after_create :create_columns
+  after_create :create_columns, if: :num_of_cols?
 
   private
 
