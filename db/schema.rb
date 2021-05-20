@@ -34,40 +34,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_172258) do
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
-  create_table "element_types", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "elements", force: :cascade do |t|
-    t.bigint "section_id", null: false
-    t.bigint "row_id", null: false
-    t.bigint "column_id", null: false
-    t.string "label"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "type"
-    t.boolean "is_required", default: false
-    t.index ["column_id"], name: "index_elements_on_column_id"
-    t.index ["row_id"], name: "index_elements_on_row_id"
-    t.index ["section_id"], name: "index_elements_on_section_id"
-  end
-
-  create_table "form_inputs", force: :cascade do |t|
-    t.string "label"
-    t.boolean "is_required"
-    t.bigint "section_id", null: false
-    t.bigint "row_id", null: false
-    t.bigint "column_id", null: false
-    t.string "type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["column_id"], name: "index_form_inputs_on_column_id"
-    t.index ["row_id"], name: "index_form_inputs_on_row_id"
-    t.index ["section_id"], name: "index_form_inputs_on_section_id"
-  end
-
   create_table "inputs", force: :cascade do |t|
     t.string "label"
     t.boolean "required", default: false
@@ -76,21 +42,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_172258) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["column_id"], name: "index_inputs_on_column_id"
-  end
-
-  create_table "number_inputs", force: :cascade do |t|
-    t.string "label"
-    t.boolean "is_required"
-    t.integer "value"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "section_id", null: false
-    t.bigint "row_id", null: false
-    t.bigint "column_id", null: false
-    t.string "input_type"
-    t.index ["column_id"], name: "index_number_inputs_on_column_id"
-    t.index ["row_id"], name: "index_number_inputs_on_row_id"
-    t.index ["section_id"], name: "index_number_inputs_on_section_id"
   end
 
   create_table "rows", force: :cascade do |t|
