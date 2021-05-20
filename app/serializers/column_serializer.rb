@@ -3,4 +3,5 @@ class ColumnSerializer < ActiveModel::Serializer
 
   belongs_to :row
   belongs_to :section
+  has_one :input
 end
