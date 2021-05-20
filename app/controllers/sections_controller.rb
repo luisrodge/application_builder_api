@@ -2,7 +2,7 @@ class SectionsController < ApplicationController
   before_action :set_section, only: %i[show destroy]
 
   def show
-    render(json: @section, include: ['application', 'rows', 'rows.columns'])
+    render(json: @section, include: ['application', 'rows', 'rows.columns', 'rows.columns.input'])
   end
 
   def create

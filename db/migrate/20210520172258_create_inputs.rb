@@ -4,7 +4,7 @@ class CreateInputs < ActiveRecord::Migration[6.1]
       t.string(:label)
       t.boolean(:required, default: false)
       t.references(:column, null: false, foreign_key: true)
-      t.string(:type)
+      t.string(:input_type)
 
       t.timestamps
     end

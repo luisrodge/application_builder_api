@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_172258) do
     t.string "label"
     t.boolean "required", default: false
     t.bigint "column_id", null: false
-    t.string "type"
+    t.string "input_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["column_id"], name: "index_inputs_on_column_id"
@@ -62,16 +62,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_172258) do
 
   add_foreign_key "columns", "rows"
   add_foreign_key "columns", "sections"
-  add_foreign_key "elements", "columns"
-  add_foreign_key "elements", "rows"
-  add_foreign_key "elements", "sections"
-  add_foreign_key "form_inputs", "columns"
-  add_foreign_key "form_inputs", "rows"
-  add_foreign_key "form_inputs", "sections"
   add_foreign_key "inputs", "columns"
-  add_foreign_key "number_inputs", "columns"
-  add_foreign_key "number_inputs", "rows"
-  add_foreign_key "number_inputs", "sections"
   add_foreign_key "rows", "sections"
   add_foreign_key "sections", "applications"
 end

@@ -18,7 +18,7 @@ class InputsController < ApplicationController
   private
 
   def input_params
-    params.require(:input).permit(:label, :required, :column_id, :type)
+    params.require(:input).permit(:label, :required, :column_id, :input_type)
   end
 
   def set_input
