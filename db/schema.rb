@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_14_025048) do
+ActiveRecord::Schema.define(version: 2021_05_20_172258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,24 +34,14 @@ ActiveRecord::Schema.define(version: 2021_05_14_025048) do
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
-  create_table "element_types", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "elements", force: :cascade do |t|
-    t.bigint "section_id", null: false
-    t.bigint "row_id", null: false
-    t.bigint "column_id", null: false
-    t.bigint "element_type_id", null: false
+  create_table "inputs", force: :cascade do |t|
     t.string "label"
+    t.boolean "required", default: false
+    t.bigint "column_id", null: false
+    t.string "input_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["column_id"], name: "index_elements_on_column_id"
-    t.index ["element_type_id"], name: "index_elements_on_element_type_id"
-    t.index ["row_id"], name: "index_elements_on_row_id"
-    t.index ["section_id"], name: "index_elements_on_section_id"
+    t.index ["column_id"], name: "index_inputs_on_column_id"
   end
 
   create_table "rows", force: :cascade do |t|
@@ -72,10 +62,7 @@ ActiveRecord::Schema.define(version: 2021_05_14_025048) do
 
   add_foreign_key "columns", "rows"
   add_foreign_key "columns", "sections"
-  add_foreign_key "elements", "columns"
-  add_foreign_key "elements", "element_types"
-  add_foreign_key "elements", "rows"
-  add_foreign_key "elements", "sections"
+  add_foreign_key "inputs", "columns"
   add_foreign_key "rows", "sections"
   add_foreign_key "sections", "applications"
 end

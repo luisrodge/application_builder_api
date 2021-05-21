@@ -7,7 +7,10 @@ class ApplicationsController < ApplicationController
   end
 
   def show
-    render(json: @application, include: ['sections', 'sections.rows', 'sections.rows.columns'])
+    render(
+      json: @application,
+      include: ['sections', 'sections.rows', 'sections.rows.columns', 'sections.rows.columns.input']
+    )
   end
 
   def create
