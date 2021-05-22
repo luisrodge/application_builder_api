@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_22_054311) do
+ActiveRecord::Schema.define(version: 2021_05_22_061518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,22 @@ ActiveRecord::Schema.define(version: 2021_05_22_054311) do
     t.index ["application_id"], name: "index_sections_on_application_id"
   end
 
+  create_table "submission_rows", force: :cascade do |t|
+    t.bigint "submission_section_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["submission_section_id"], name: "index_submission_rows_on_submission_section_id"
+  end
+
+  create_table "submission_sections", force: :cascade do |t|
+    t.string "title"
+    t.text "details"
+    t.bigint "submission_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["submission_id"], name: "index_submission_sections_on_submission_id"
+  end
+
   create_table "submissions", force: :cascade do |t|
     t.bigint "application_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -72,5 +88,7 @@ ActiveRecord::Schema.define(version: 2021_05_22_054311) do
   add_foreign_key "inputs", "columns"
   add_foreign_key "rows", "sections"
   add_foreign_key "sections", "applications"
+  add_foreign_key "submission_rows", "submission_sections"
+  add_foreign_key "submission_sections", "submissions"
   add_foreign_key "submissions", "applications"
 end
