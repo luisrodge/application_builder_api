@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_22_061518) do
+ActiveRecord::Schema.define(version: 2021_05_22_082757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,18 @@ ActiveRecord::Schema.define(version: 2021_05_22_061518) do
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
+  create_table "filled_inputs", force: :cascade do |t|
+    t.string "input_type"
+    t.string "value"
+    t.string "label"
+    t.bigint "input_id", null: false
+    t.bigint "submission_column_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["input_id"], name: "index_filled_inputs_on_input_id"
+    t.index ["submission_column_id"], name: "index_filled_inputs_on_submission_column_id"
+  end
+
   create_table "inputs", force: :cascade do |t|
     t.string "label"
     t.boolean "required", default: false
@@ -41,7 +53,9 @@ ActiveRecord::Schema.define(version: 2021_05_22_061518) do
     t.string "input_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["column_id"], name: "index_inputs_on_column_id"
+    t.index ["name"], name: "index_inputs_on_name", unique: true
   end
 
   create_table "rows", force: :cascade do |t|
@@ -58,6 +72,13 @@ ActiveRecord::Schema.define(version: 2021_05_22_061518) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["application_id"], name: "index_sections_on_application_id"
+  end
+
+  create_table "submission_columns", force: :cascade do |t|
+    t.bigint "submission_row_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["submission_row_id"], name: "index_submission_columns_on_submission_row_id"
   end
 
   create_table "submission_rows", force: :cascade do |t|
@@ -85,9 +106,12 @@ ActiveRecord::Schema.define(version: 2021_05_22_061518) do
 
   add_foreign_key "columns", "rows"
   add_foreign_key "columns", "sections"
+  add_foreign_key "filled_inputs", "inputs"
+  add_foreign_key "filled_inputs", "submission_columns"
   add_foreign_key "inputs", "columns"
   add_foreign_key "rows", "sections"
   add_foreign_key "sections", "applications"
+  add_foreign_key "submission_columns", "submission_rows"
   add_foreign_key "submission_rows", "submission_sections"
   add_foreign_key "submission_sections", "submissions"
   add_foreign_key "submissions", "applications"

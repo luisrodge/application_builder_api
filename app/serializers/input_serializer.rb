@@ -1,5 +1,5 @@
 class InputSerializer < ActiveModel::Serializer
-  attributes :id, :label, :required, :column_id, :input_type, :section_id
+  attributes :id, :label, :name, :required, :column_id, :input_type, :section_id
 
   belongs_to :column
 

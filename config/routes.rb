@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   end
 
   resources :applications
+  resources :submissions
 end

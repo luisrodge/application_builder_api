@@ -4,7 +4,7 @@ module Admin
 
     def create
       @input = Input.new(input_params)
-      if @input.save
+      if @input.save!
         render(json: @input, include: ['column'])
       else
         render_422(@input.errors)
