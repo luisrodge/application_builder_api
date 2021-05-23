@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  input_type: MyString
+  value: MyString
+  label: MyString
+  input: one
+  submission_column: one
+
+two:
+  input_type: MyString
+  value: MyString
+  label: MyString
+  input: two
+  submission_column: two
