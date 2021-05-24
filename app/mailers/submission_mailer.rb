@@ -3,7 +3,7 @@ class SubmissionMailer < ApplicationMailer
     @submission = submission
 
     attachment_name = "#{@submission.application.title.delete(' ').downcase}_submission_#{@submission.id}.pdf"
-    subject = "#{@submission.application.title} Submission No. #{@submission.id}"
+    subject = "#{@submission.application.title} - Submission No. #{@submission.id}"
 
     attachments[attachment_name] = WickedPdf.new.pdf_from_string(
       render_to_string(

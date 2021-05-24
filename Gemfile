@@ -6,10 +6,11 @@ ruby '3.0.1'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'data_migrate'
+gem 'mailgun-ruby', '~>1.2.4'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
-gem 'sucker_punch', '~> 3.0'
+gem 'sucker_punch'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
