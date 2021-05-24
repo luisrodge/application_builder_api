@@ -8,8 +8,7 @@ class SubmissionsPdfController < ActionController::Base
           pdf: "submission_#{@submission.id}",
           template: 'submissions/show',
           layout: 'pdf.html',
-          page_size: 'A4',
-          show_as_html: params.key?('debug')
+          page_size: 'A4'
         )
       end
     end
