@@ -1,0 +1,31 @@
+
+<div class="header">
+  <h1 class="application-title">Application | <%= @submission.application.title %></h1>
+   <% if @submission.application.details.present? %>
+      <p><%= @submission.application.details %></p>
+    <% end %>
+</div>
+
+<% @submission.submission_sections.each do |section| %>
+  <div class="section">
+    <h3 class="section-title"><%= section.title %></h3>
+    <% if section.details.present? %>
+      <p><%= section.details %></p>
+    <% end %>
+    <div class="section-content"> 
+      <table>
+        <% section.submission_rows.each do |row| %>
+          <tr>
+            <% row.submission_columns.each do |column| %>
+              <td>
+                <p>
+                  <strong><%= column.filled_input.label %>:</strong><span style="margin-left: 10px;"><%= column.filled_input.value %></span>
+                </p>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+<% end %>
