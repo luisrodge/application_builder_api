@@ -3,11 +3,11 @@ module Admin
     before_action :set_input, only: %i[destroy]
 
     def create
-      @input = Input.new(input_params)
-      if @input.save!
-        render(json: @input, include: ['column'])
+      result = CreateInput.call(input_params, params)
+      if result.success?
+        render(json: result.record, include: ['column, checkbox_options'])
       else
-        render_422(@input.errors)
+        render_422(result.record.errors)
       end
     end
 

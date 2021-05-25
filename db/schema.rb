@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_22_082757) do
+ActiveRecord::Schema.define(version: 2021_05_24_232638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 2021_05_22_082757) do
     t.text "details"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "checkbox_options", force: :cascade do |t|
+    t.string "name"
+    t.bigint "input_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["input_id"], name: "index_checkbox_options_on_input_id"
   end
 
   create_table "columns", force: :cascade do |t|
@@ -104,6 +112,7 @@ ActiveRecord::Schema.define(version: 2021_05_22_082757) do
     t.index ["application_id"], name: "index_submissions_on_application_id"
   end
 
+  add_foreign_key "checkbox_options", "inputs"
   add_foreign_key "columns", "rows"
   add_foreign_key "columns", "sections"
   add_foreign_key "filled_inputs", "inputs"
