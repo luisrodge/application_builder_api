@@ -10,7 +10,8 @@ module Admin
           'rows',
           'rows.columns',
           'rows.columns.input',
-          'rows.columns.input.checkbox_options'
+          'rows.columns.input.checkbox_options',
+          'rows.columns.input.radio_options'
         ]
       )
     end

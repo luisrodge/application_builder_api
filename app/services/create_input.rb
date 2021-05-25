@@ -9,6 +9,7 @@ class CreateInput < BaseService
 
     if input.save!
       create_checkbox_options(input.id) if input.input_type == 'CheckboxInput'
+      create_radio_options(input.id) if input.input_type == 'RadioInput'
       Result.new(record: input, success: true)
     else
       Result.new(record: input, success: false)
@@ -20,6 +21,12 @@ class CreateInput < BaseService
   def create_checkbox_options(input_id)
     @params[:checkbox_options].each do |option_name|
       CheckboxOption.create(name: option_name, input_id: input_id)
+    end
+  end
+
+  def create_radio_options(input_id)
+    @params[:radio_options].each do |option_name|
+      RadioOption.create(name: option_name, input_id: input_id)
     end
   end
 end
