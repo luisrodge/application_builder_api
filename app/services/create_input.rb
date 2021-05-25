@@ -8,11 +8,9 @@ class CreateInput < BaseService
     input = Input.new(@input_params)
 
     if input.save!
-
       create_checkbox_options(input.id) if input.input_type == 'CheckboxInput'
       Result.new(record: input, success: true)
     else
-
       Result.new(record: input, success: false)
     end
   end
