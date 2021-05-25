@@ -2,6 +2,7 @@ class Input < ApplicationRecord
   belongs_to :column
   has_many :filled_inputs, dependent: :destroy
   has_many :checkbox_options, dependent: :destroy
+  has_many :radio_options, dependent: :destroy
 
   validates :label, presence: true
 

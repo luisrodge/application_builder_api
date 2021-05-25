@@ -5,7 +5,7 @@ module Admin
     def create
       result = CreateInput.call(input_params, params)
       if result.success?
-        render(json: result.record, include: %w[column checkbox_options])
+        render(json: result.record, include: %w[column checkbox_options radio_options])
       else
         render_422(result.record.errors)
       end

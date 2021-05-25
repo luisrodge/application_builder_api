@@ -9,7 +9,8 @@ class ApplicationsController < ApplicationController
         'sections.rows',
         'sections.rows.columns',
         'sections.rows.columns.input',
-        'sections.rows.columns.input.checkbox_options'
+        'sections.rows.columns.input.checkbox_options',
+        'sections.rows.columns.input.radio_options'
       ]
     )
   end
