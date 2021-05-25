@@ -3,7 +3,16 @@ module Admin
     before_action :set_section, only: %i[show destroy]
 
     def show
-      render(json: @section, include: ['application', 'rows', 'rows.columns', 'rows.columns.input'])
+      render(
+        json: @section,
+        include: [
+          'application',
+          'rows',
+          'rows.columns',
+          'rows.columns.input',
+          'rows.columns.input.checkbox_options'
+        ]
+      )
     end
 
     def create

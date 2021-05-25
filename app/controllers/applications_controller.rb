@@ -4,7 +4,13 @@ class ApplicationsController < ApplicationController
   def show
     render(
       json: @application,
-      include: ['sections', 'sections.rows', 'sections.rows.columns', 'sections.rows.columns.input']
+      include: [
+        'sections',
+        'sections.rows',
+        'sections.rows.columns',
+        'sections.rows.columns.input',
+        'sections.rows.columns.input.checkbox_options'
+      ]
     )
   end
 
