@@ -24,9 +24,11 @@ class CreateSubmission < BaseService
               input = column.input
               field_params = @params[:section_fields].find { |f| f[:name] == input.name }
 
+              formatted_value = format_value(input.input_type, field_params[:value])
+
               FilledInput.create(
                 label: input.label,
-                value: field_params[:value],
+                value: formatted_value,
                 input_type: input.input_type,
                 input_id: input.id,
                 submission_column_id: submission_column.id
@@ -39,5 +41,13 @@ class CreateSubmission < BaseService
     rescue ActiveRecord::ActiveRecordError => e
       Result.new(record: submission, success: false, errors: e.message)
     end
+  end
+
+  private
+
+  def format_value(input_type, value)
+    return Time.parse(value).strftime('%F') if input_type == 'DatePickerInput'
+
+    value
   end
 end
