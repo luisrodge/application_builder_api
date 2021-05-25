@@ -47,3 +47,14 @@ An email will contain the following:
 
 - Application PDF
 - Attachments
+
+## Quik Links
+
+When someone is ready to publish their application and make it available to start receiving submissions
+they will be given a Quik Link - a short and nice url pointing to their application that they can then share
+on facebook, instagram, email, etc...
+
+Example:
+
+wwww.quikapply.com/someuniqueid
+www.quikapply.com/2SqS5kk
