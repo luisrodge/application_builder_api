@@ -53,4 +53,4 @@ ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
-append :linked_files, 'config/database.yml', 'config/secrets.yml', '.env'
+append :linked_files, '.env'
