@@ -12,6 +12,15 @@ class SubmissionMailer < ApplicationMailer
       )
     )
 
+    file_inputs = @submission.filled_inputs.where(input_type: 'UploadInput')
+
+    if file_inputs.any?
+      file_inputs.each do |file_input|
+        file = file_input.file
+        attachments[file.blob.filename.to_s] = { mime_type: file.blob.content_type, content: file.blob.download }
+      end
+    end
+
     mail(to: 'rodgetech@gmail.com', subject: subject)
   end
 end
