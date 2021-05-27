@@ -9,5 +9,5 @@ Rails.application.routes.draw do
 
   resources :applications
   resources :submissions
-  resources :submissions_pdf, only: :show
+  # resources :submissions_pdf, only: :show
 end
