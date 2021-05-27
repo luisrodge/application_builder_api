@@ -22,12 +22,13 @@ class CreateSubmission < BaseService
               filled_input_params = column_params[:filledInputAttributes]
               input = Input.find(filled_input_params[:inputId])
               value = transform_value(input.input_type, filled_input_params)
-
+              
               filled_input = FilledInput.create(
                 label: input.label,
                 value: value,
                 input_type: input.input_type,
                 input_id: input.id,
+                submission_id: submission.id,
                 submission_column_id: submission_column.id
               )
               attach_file(filled_input, filled_input_params) if input.input_type == 'UploadInput'

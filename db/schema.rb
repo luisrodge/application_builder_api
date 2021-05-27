@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_25_215914) do
+ActiveRecord::Schema.define(version: 2021_05_27_023215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,8 +78,10 @@ ActiveRecord::Schema.define(version: 2021_05_25_215914) do
     t.bigint "submission_column_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "submission_id", null: false
     t.index ["input_id"], name: "index_filled_inputs_on_input_id"
     t.index ["submission_column_id"], name: "index_filled_inputs_on_submission_column_id"
+    t.index ["submission_id"], name: "index_filled_inputs_on_submission_id"
   end
 
   create_table "inputs", force: :cascade do |t|
@@ -155,6 +157,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_215914) do
   add_foreign_key "columns", "sections"
   add_foreign_key "filled_inputs", "inputs"
   add_foreign_key "filled_inputs", "submission_columns"
+  add_foreign_key "filled_inputs", "submissions"
   add_foreign_key "inputs", "columns"
   add_foreign_key "radio_options", "inputs"
   add_foreign_key "rows", "sections"
