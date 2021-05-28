@@ -17,7 +17,7 @@
 
 Rails.application.config.middleware.insert_before(0, Rack::Cors) do
   allow do
-    origins '*'
+    origins ENV['CLIENT_ORIGIN']
 
     resource '*', headers: :any, methods: :any
   end
