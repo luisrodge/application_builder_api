@@ -3,4 +3,5 @@ class Application < ApplicationRecord
   has_many :submissions, dependent: :destroy
 
   validates :title, presence: true
+  validates :email, presence: true
 end

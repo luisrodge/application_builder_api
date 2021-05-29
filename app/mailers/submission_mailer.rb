@@ -21,6 +21,6 @@ class SubmissionMailer < ApplicationMailer
       end
     end
 
-    mail(to: 'rodgetech@gmail.com', subject: subject)
+    mail(to: @submission.email, subject: subject)
   end
 end
