@@ -8,6 +8,10 @@ class Application < ApplicationRecord
   before_validation :generate_short_url
 
   def generate_short_url
-    self.short_url = SecureRandom.uuid[0..5]
+    self.short_url =
+      loop do
+        random_short_url = SecureRandom.alphanumeric(7)
+        break random_short_url unless Application.exists?(short_url: random_short_url)
+      end
   end
 end
