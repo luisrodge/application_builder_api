@@ -1,4 +1,6 @@
 class Application < ApplicationRecord
+  extend FriendlyId
+
   has_many :sections, dependent: :destroy
   has_many :submissions, dependent: :destroy
 
@@ -6,6 +8,8 @@ class Application < ApplicationRecord
   validates :email, presence: true
 
   before_validation :generate_short_url
+
+  friendly_id :title, use: :slugged
 
   def generate_short_url
     self.short_url =

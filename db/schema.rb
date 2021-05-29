@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_29_063203) do
+ActiveRecord::Schema.define(version: 2021_05_29_182628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,9 @@ ActiveRecord::Schema.define(version: 2021_05_29_063203) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", null: false
     t.string "short_url"
+    t.string "slug"
     t.index ["short_url"], name: "index_applications_on_short_url", unique: true
+    t.index ["slug"], name: "index_applications_on_slug", unique: true
   end
 
   create_table "checkbox_options", force: :cascade do |t|
@@ -85,6 +87,17 @@ ActiveRecord::Schema.define(version: 2021_05_29_063203) do
     t.index ["input_id"], name: "index_filled_inputs_on_input_id"
     t.index ["submission_column_id"], name: "index_filled_inputs_on_submission_column_id"
     t.index ["submission_id"], name: "index_filled_inputs_on_submission_id"
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "inputs", force: :cascade do |t|

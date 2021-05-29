@@ -6,6 +6,7 @@ ruby '3.0.1'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'data_migrate'
+gem 'friendly_id', '~> 5.4.0'
 gem 'mailgun-ruby', '~>1.2.4'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
