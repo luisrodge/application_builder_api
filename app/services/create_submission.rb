@@ -4,7 +4,7 @@ class CreateSubmission < BaseService
   end
 
   def call
-    submission = Submission.new(application_id: @params[:applicationId])
+    submission = Submission.new(application_id: @params[:applicationId], email: @params[:email])
     begin
       ActiveRecord::Base.transaction do
         submission.save
@@ -22,7 +22,7 @@ class CreateSubmission < BaseService
               filled_input_params = column_params[:filledInputAttributes]
               input = Input.find(filled_input_params[:inputId])
               value = transform_value(input.input_type, filled_input_params)
-              
+
               filled_input = FilledInput.create(
                 label: input.label,
                 value: value,
