@@ -15,6 +15,11 @@ class ApplicationsController < ApplicationController
     )
   end
 
+  def expand_short_url
+    @application = Application.find_by_short_url(params[:short_url])
+    render(json: @application.id)
+  end
+
   private
 
   def set_application

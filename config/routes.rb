@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
   resources :applications
   resources :submissions
+
+  get '/s/:short_url', to: 'applications#expand_short_url', as: :expand_short_url
 end
