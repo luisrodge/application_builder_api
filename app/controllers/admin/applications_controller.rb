@@ -42,7 +42,7 @@ module Admin
     end
 
     def set_application
-      @application = Application.find(params[:id])
+      @application = Application.friendly.find(params[:id])
     end
   end
 end
