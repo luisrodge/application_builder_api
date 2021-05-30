@@ -18,4 +18,8 @@ class Application < ApplicationRecord
         break random_short_url unless Application.exists?(short_url: random_short_url)
       end
   end
+
+  def apply_links
+    { short_url: short_url, url: slug }
+  end
 end

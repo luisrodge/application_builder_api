@@ -1,6 +1,6 @@
 module Admin
   class ApplicationsController < ApplicationController
-    before_action :set_application, only: %i[show destroy]
+    before_action :set_application, only: %i[show destroy publish quik_links]
 
     def index
       @applications = Application.order(created_at: :desc)
@@ -33,6 +33,15 @@ module Admin
     def destroy
       @application.destroy
       head(:ok)
+    end
+
+    def publish
+      @application.update(published: true)
+      head(:ok)
+    end
+
+    def quik_links
+      render(json: @application.apply_links)
     end
 
     private
