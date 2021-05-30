@@ -7,7 +7,7 @@ class Application < ApplicationRecord
   validates :title, presence: true
   validates :email, presence: true
 
-  before_validation :generate_short_url
+  before_validation :generate_short_url, on: :create
 
   friendly_id :title, use: :slugged
 
