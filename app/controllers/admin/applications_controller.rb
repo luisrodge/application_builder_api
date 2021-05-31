@@ -1,6 +1,6 @@
 module Admin
   class ApplicationsController < ApplicationController
-    before_action :set_application, only: %i[show destroy publish quik_links]
+    before_action :set_application, only: %i[show update destroy publish quik_links]
     before_action :should_404, only: :show
 
     def index
@@ -31,6 +31,15 @@ module Admin
       end
     end
 
+    def update
+      @application.slug = nil
+      if @application.update(application_params)
+        render(json: @application)
+      else
+        render_422(@application.errors)
+      end
+    end
+
     def destroy
       @application.destroy
       head(:ok)
@@ -48,7 +57,7 @@ module Admin
     private
 
     def application_params
-      params.require(:application).permit(:title, :email, :details)
+      params.require(:application).permit(:id, :title, :email, :details)
     end
 
     def set_application
