@@ -1,6 +1,6 @@
 module Admin
   class SectionsController < ApplicationController
-    before_action :set_section, only: %i[show destroy]
+    before_action :set_section, only: %i[show update destroy]
     before_action :should_404, only: :show
 
     def show
@@ -26,6 +26,14 @@ module Admin
       end
     end
 
+    def update
+      if @section.update(section_params)
+        render(json: @section)
+      else
+        render_422(@section.errors)
+      end
+    end
+
     def destroy
       @section.destroy
       head(:ok)
@@ -34,7 +42,7 @@ module Admin
     private
 
     def section_params
-      params.require(:section).permit(:title, :details, :num_of_cols, :application_id)
+      params.require(:section).permit(:id, :title, :details, :num_of_cols, :application_id)
     end
 
     def set_section
