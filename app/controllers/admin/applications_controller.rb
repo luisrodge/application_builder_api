@@ -1,6 +1,7 @@
 module Admin
   class ApplicationsController < ApplicationController
-    before_action :set_application, only: %i[show destroy]
+    before_action :set_application, only: %i[show destroy publish quik_links]
+    before_action :should_404, only: :show
 
     def index
       @applications = Application.order(created_at: :desc)
@@ -35,6 +36,15 @@ module Admin
       head(:ok)
     end
 
+    def publish
+      @application.update(published: true)
+      head(:ok)
+    end
+
+    def quik_links
+      render(json: @application.apply_links)
+    end
+
     private
 
     def application_params
@@ -42,7 +52,11 @@ module Admin
     end
 
     def set_application
-      @application = Application.find(params[:id])
+      @application = Application.friendly.find(params[:id])
+    end
+
+    def should_404
+      render_404 if @application.published?
     end
   end
 end

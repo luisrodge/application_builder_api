@@ -1,6 +1,7 @@
 module Admin
   class SectionsController < ApplicationController
     before_action :set_section, only: %i[show destroy]
+    before_action :should_404, only: :show
 
     def show
       render(
@@ -38,6 +39,10 @@ module Admin
 
     def set_section
       @section = Section.find(params[:id])
+    end
+
+    def should_404
+      render_404 if @section.application.published?
     end
   end
 end

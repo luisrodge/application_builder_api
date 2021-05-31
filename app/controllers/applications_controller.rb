@@ -1,5 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :set_application, only: %i[show]
+  before_action :should_404, only: :show
 
   def show
     render(
@@ -15,9 +16,18 @@ class ApplicationsController < ApplicationController
     )
   end
 
+  def expand_short_url
+    @application = Application.find_by_short_url(params[:short_url])
+    render(json: @application.slug)
+  end
+
   private
 
   def set_application
-    @application = Application.find(params[:id])
+    @application = Application.friendly.find(params[:id])
+  end
+
+  def should_404
+    render_404 unless @application.published?
   end
 end

@@ -7,19 +7,19 @@ Once an application is submitted we want to generate a PDF for it. The pdf shoul
 The pdf will be organized into two parts:
 
 1 Header
-  - Application title
-  - Application details
+  - Application title ✅
+  - Application details ✅
   - Contact info
   - Date
   - Etc
 
-2 Body
+2 Body ✅
   - Sections
     - Rows
       - Columns
         - Filled input
 
-### Dealing with Attachments (images, documents, etc)
+### Dealing with Attachments (images, documents, etc) ✅
 
 For the sake of simplicity when generating a pdf, if one if the inputs is a file or image upload input - instead of rendering the image directly in the pdf we will instead add it as an attachment in the email.
 
@@ -37,7 +37,7 @@ Driver license: driver_license.png
 Employment letter: employment_letter.pdf
 
 
-## Email submitted application PDF
+## Email submitted application PDF ✅
 
 For now the only way of recieving and viewing submitted applications will be via email. Once an application is submitted and a PDF has been generated for it, we will email that PDF to person who created the application.
 
@@ -48,7 +48,7 @@ An email will contain the following:
 - Application PDF
 - Attachments
 
-## Quik Links
+## Quik Links ✅
 
 When someone is ready to publish their application and make it available to start receiving submissions
 they will be given a Quik Link - a short and nice url pointing to their application that they can then share
