@@ -6,7 +6,7 @@
     <% end %>
 </div>
 
-<% @submission.submission_sections.each do |section| %>
+<% @submission.submission_sections.each.with_index do |section| %>
   <div class="section">
     <h3 class="section-title"><%= section.title %></h3>
     <% if section.details.present? %>
@@ -15,15 +15,18 @@
     <div class="section-content"> 
       <table>
         <% section.submission_rows.each do |row| %>
-          <tr>
-            <% row.submission_columns.each do |column| %>
-              <td>
-                <p>
-                  <strong><%= column.filled_input.label %>:</strong><span style="margin-left: 10px;"><%= column.filled_input.value %></span>
-                </p>
-              </td>
+            <% row.submission_columns.each_slice(4).each do |row_columns| %>
+              <tr> 
+                  <% row_columns.each do |column|%>
+                    <td>
+                      <p>
+                        <strong><%= column.filled_input.label %></strong><br/>
+                        <%= column.filled_input.value %>
+                      </p>
+                    </td>
+                  <% end %>
+              </tr>
             <% end %>
-          </tr>
         <% end %>
       </table>
     </div>
