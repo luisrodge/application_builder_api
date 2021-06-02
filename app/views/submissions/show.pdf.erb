@@ -18,9 +18,9 @@
             <% row.submission_columns.each_slice(4).each do |row_columns| %>
               <tr> 
                   <% row_columns.each do |column|%>
-                    <td>
+                    <td colspan="<%= 4 / row_columns.length %>">
                       <p>
-                        <strong><%= column.filled_input.label %></strong><br/>
+                        <strong><%= column.filled_input.label %>:</strong><br/>
                         <%= column.filled_input.value %>
                       </p>
                     </td>
