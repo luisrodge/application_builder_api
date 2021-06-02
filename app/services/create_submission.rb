@@ -46,6 +46,7 @@ class CreateSubmission < BaseService
 
   def transform_value(input_type, filled_input_params)
     return Time.parse(filled_input_params[:value]).strftime('%F') if input_type == 'DatePickerInput'
+    return filled_input_params[:value].join(', ') if input_type == 'CheckboxInput'
 
     filled_input_params[:value]
   end
