@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_01_202235) do
+ActiveRecord::Schema.define(version: 2021_06_03_025113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2021_06_01_202235) do
     t.string "short_url"
     t.string "slug"
     t.boolean "published", default: false
+    t.text "terms"
+    t.text "policies"
     t.index ["short_url"], name: "index_applications_on_short_url", unique: true
     t.index ["slug"], name: "index_applications_on_slug", unique: true
   end

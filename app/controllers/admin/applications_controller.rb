@@ -57,7 +57,7 @@ module Admin
     private
 
     def application_params
-      params.require(:application).permit(:id, :title, :email, :details)
+      params.require(:application).permit(:id, :title, :email, :details, :policies, :terms)
     end
 
     def set_application
