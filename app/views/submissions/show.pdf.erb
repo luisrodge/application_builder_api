@@ -30,8 +30,13 @@
         <% end %>
       </table>
     </div>
-    <div style="width: 150px; margin-top: 30px;">
-      <img src="<%= @submission.signature %>" style="width: 100%; height: auto;" />
+    <div style="margin-top: 30px;">
+      <h3><%= sanitize(@submission.application.terms) %></h3>
+      <h3><%= sanitize(@submission.application.policies) %></h3>
+      <div style="width: 150px; margin-top: 30px;">
+        <h3>Signature:</h3>
+        <img src="<%= @submission.signature %>" style="width: 100%; height: auto;" />
+      </div>
     </div>
   </div>
 <% end %>
