@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_03_025113) do
+ActiveRecord::Schema.define(version: 2021_06_03_053247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 2021_06_03_025113) do
     t.boolean "published", default: false
     t.text "terms"
     t.text "policies"
+    t.boolean "signature_enabled", default: false
+    t.text "signature"
     t.index ["short_url"], name: "index_applications_on_short_url", unique: true
     t.index ["slug"], name: "index_applications_on_slug", unique: true
   end
@@ -169,6 +171,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_025113) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email"
+    t.text "signature"
     t.index ["application_id"], name: "index_submissions_on_application_id"
   end
 
