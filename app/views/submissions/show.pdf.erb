@@ -33,17 +33,10 @@
     <div style="margin-top: 30px;">
       <h3><%= sanitize(@submission.application.terms) %></h3>
       <h3><%= sanitize(@submission.application.policies) %></h3>
-      <table cellspacing="0">
-        <tr>
-            <td style="width: 130px;"><h3>Signature:</h3></td>
-            <td>
-              <div style="width: 150px; margin-top: 30px;">
-                <img src="<%= @submission.signature %>" style="width: 100%; height: auto;" />
-              </div>
-            </td>
-        </tr>
-      </table>
-      
+      <div style="width: 150px; margin-top: 30px; border-bottom: 1px solid #000;">
+        <img src="<%= @submission.signature %>" style="width: 100%; height: auto;" />
+      </div>
+      <h3>Signature</h3>
     </div>
   </div>
 <% end %>
