@@ -4,7 +4,11 @@ class CreateSubmission < BaseService
   end
 
   def call
-    submission = Submission.new(application_id: @params[:applicationId], email: @params[:email])
+    submission = Submission.new(
+      application_id: @params[:applicationId],
+      email: @params[:email],
+      signature: @params[:signature]
+    )
     begin
       ActiveRecord::Base.transaction do
         submission.save

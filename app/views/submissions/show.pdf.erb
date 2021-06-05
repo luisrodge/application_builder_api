@@ -32,3 +32,20 @@
     </div>
   </div>
 <% end %>
+
+<% if @submission.application.terms.present? ||  @submission.application.policies.present? || @submission.application.signature_enabled? %>
+  <div style="margin-top: 30px;">
+    <% if @submission.application.terms.present? %>
+      <h3><%= sanitize(@submission.application.terms) %></h3>
+    <% end %>
+    <% if @submission.application.policies.present? %>
+      <h3><%= sanitize(@submission.application.policies) %></h3>
+    <% end %>
+    <% if @submission.application.signature_enabled %>
+      <div style="width: 150px; margin-top: 60px; border-bottom: 1px solid #000;">
+        <img src="<%= @submission.signature %>" style="width: 100%; height: auto;" />
+      </div>
+      <h3>Signature</h3>
+    <% end %>
+  </div>
+<% end %>
