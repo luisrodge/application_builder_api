@@ -19,14 +19,14 @@ module Api
       end
 
       def expand_short_url
-        @application = Application.find_by_short_url(params[:short_url])
+        @application = ::Application.find_by_short_url(params[:short_url])
         render(json: @application.slug)
       end
 
       private
 
       def set_application
-        @application = Application.friendly.find(params[:id])
+        @application = ::Application.friendly.find(params[:id])
       end
 
       def should_404
