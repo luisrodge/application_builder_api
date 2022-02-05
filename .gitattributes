@@ -8,3 +8,5 @@ db/schema.rb linguist-generated
 vendor/* linguist-vendored
 
 *.rb linguist-detectable=true
+*.html linguist-detectable=false
+*.xml linguist-detectable=false
