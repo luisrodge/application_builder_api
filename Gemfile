@@ -13,7 +13,6 @@ gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 gem 'sucker_punch'
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
 
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-passenger', '~> 0.2.0'
@@ -22,6 +21,10 @@ gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
+
+group :production do
+  gem 'wkhtmltopdf-heroku'
+end
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -34,6 +37,7 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'solargraph'
   gem 'spring'
+  gem 'wkhtmltopdf-binary'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
